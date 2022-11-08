@@ -35,6 +35,10 @@ private LoginDAO loginDAO;
 			System.out.println("Detail Entered  Are Invalid");
 			Boolean save = loginDAO.save(loginDTO);
 			System.out.println(save);
+			if(save) {
+				Boolean sendEmail = loginDAO.sendEmail( loginDTO.getUserEmail(),loginDTO);
+				System.out.println(sendEmail);
+			}
 			return true;
 		}
 		
@@ -50,9 +54,13 @@ private LoginDAO loginDAO;
 			return false;
 		}
 		else {
+			
 			return true;
+	
+		
 		}
 	}
+	
 	}
 
 

@@ -23,8 +23,8 @@ import lombok.ToString;
 @Entity
 @Table(name="logindetails")
 
-@NamedQueries({
-	@NamedQuery(name="FindByEmail",query="SELECT login from LoginDTO login where login.userEmail=:email")})
+@NamedQueries({@NamedQuery(name="FindByEmail",query="SELECT login from LoginDTO login where login.userEmail=:email"),
+	@NamedQuery(name="findByNameAndMobileNumber",query="select login from LoginDTO login where login.userEmail=:mail And login.contactInfo =:info")})
 public class LoginDTO {
 	
 public LoginDTO() {

@@ -7,5 +7,6 @@ import com.xworkz.login.dto.LoginDTO;
 public interface LoginDAO {
 
 	public Boolean save(LoginDTO loginDTO);
-	 List<LoginDTO> FindByEmail(String newEmail);
+	public List<LoginDTO> FindByEmail(String newEmail);
+	 public Boolean sendEmail(String email, LoginDTO loginDTO);
 }

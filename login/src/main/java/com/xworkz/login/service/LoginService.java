@@ -6,4 +6,5 @@ public interface LoginService {
 
 	public Boolean validateAndSave(LoginDTO loginDTO);
 	Boolean FindByEmail(String newEmail);
+	
 }
