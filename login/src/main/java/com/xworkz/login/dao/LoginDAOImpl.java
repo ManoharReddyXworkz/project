@@ -1,5 +1,7 @@
 package com.xworkz.login.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,13 +20,12 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.xworkz.login.dto.LoginDTO;
 
-import io.quarkus.arc.runtime.BeanContainer.Factory;
-
 @Repository
-public class LoginDAOImpl implements LoginDAO{
-	
+public class LoginDAOImpl implements LoginDAO {
+
 	@Autowired
 	private EntityManagerFactory factory;
 	private EntityManager manager;
@@ -33,42 +34,36 @@ public class LoginDAOImpl implements LoginDAO{
 	public Boolean save(LoginDTO loginDTO) {
 		manager = factory.createEntityManager();
 		try {
-			
-			EntityTransaction transaction= manager.getTransaction();
+			EntityTransaction transaction = manager.getTransaction();
 			transaction.begin();
 			manager.persist(loginDTO);
 			transaction.commit();
-		}
-		catch (PersistenceException p) {
+		} catch (PersistenceException p) {
 			p.printStackTrace();
-		}
-		finally {
+		} finally {
 			manager.close();
 		}
-		
+
 		return true;
 	}
 
 	@Override
-	public List<LoginDTO> FindByEmail(String newEmail) {
+	public List<LoginDTO> findByEmail(String newEmail) {
+		System.out.println("calling Find By email of DAO Method");
 		try {
 			manager = factory.createEntityManager();
-			Query query = manager.createNamedQuery( "FindByEmail");
+			Query query = manager.createNamedQuery("FindByEmail");
 			query.setParameter("email", newEmail);
 			List<LoginDTO> resultList = query.getResultList();
-			System.out.println(resultList);
-
-			if(resultList.isEmpty()) {
-				return null;
+			System.out.println("Getting from result list"+resultList);
+			if (resultList.isEmpty()) {
+				System.out.println("Email is not found");
+			} else if(!resultList.isEmpty()){
+				return resultList;
 			}
-				else if(!resultList.isEmpty()) {
-					return resultList;
-				}
-		}
-		catch (PersistenceException e) {
+		} catch (PersistenceException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			manager.close();
 		}
 		return null;
@@ -76,9 +71,9 @@ public class LoginDAOImpl implements LoginDAO{
 
 	@Override
 	public Boolean sendEmail(String email, LoginDTO loginDTO) {
-	
-		String name =  loginDTO.getUserName();
-		
+
+		String name = loginDTO.getUserName();
+
 		// Recipient's email ID needs to be mentioned.
 		String to = email;
 
@@ -100,8 +95,7 @@ public class LoginDAOImpl implements LoginDAO{
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.debug", "true");
-		properties.put("mail.transport.protocol","smtp");
-		
+		properties.put("mail.transport.protocol", "smtp");
 
 		// Get the Session object.// and pass username and password
 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
@@ -131,9 +125,8 @@ public class LoginDAOImpl implements LoginDAO{
 			message.setSubject("Registration Confirmation Mail");
 
 			// Now set the actual message
-			message.setText("Hi"+" "+ name
-			+"This Is To Confirm You That Your Registration Was Successful"+" "
-			+ "Thank You");
+			message.setText("Hi" + " " + name + "This Is To Confirm You That Your Registration Was Successful" + " "
+					+ "Thank You");
 
 			System.out.println("sending...");
 			// Send message
@@ -143,9 +136,118 @@ public class LoginDAOImpl implements LoginDAO{
 			mex.printStackTrace();
 		}
 
+		return true;
+	}
+
+	public List<LoginDTO> findBYEmailAndSecurity(String email, String security) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			Query query = manager.createNamedQuery("findByEmailAndSecurity");
+			query.setParameter("emails", email);
+			query.setParameter("secu", security);
+			System.out.println(email);
+			System.out.println(security);
+			List<LoginDTO> resultSet = query.getResultList();
+			System.out.println(resultSet.size());
+			if (resultSet.isEmpty()) {
+				System.out.println("Data is not there");
+				return null;
+			} else if (!resultSet.isEmpty()) {
+				return resultSet;
+			}
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
 		return null;
 	}
 
-	
+	@Override
+	public Boolean updateStatusByEmail(String email, String status) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updateStatusByEmail");
+			query.setParameter("mails", email);
+			query.setParameter("statuss", status);
+			query.executeUpdate();
+			transaction.commit();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+
+		return true;
+	}
+
+	@Override
+	public Boolean updateCountByEmail(Integer count, String email) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updateCountByEmail");
+			query.setParameter("counts", count);
+			query.setParameter("mails", email);
+			query.executeUpdate();
+			transaction.commit();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+
+		return true;
+	}
+
+	@Override
+	public Boolean updateOtpDateAndTimeByEmail(Integer otp, String email, LocalDate date, LocalTime time) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updateOtpDateAndTimeByEmail");
+			query.setParameter("ot", otp);
+			query.setParameter("gmail", email);
+			query.setParameter("da", date);
+			query.setParameter("tm", time);
+			query.executeUpdate();
+			transaction.commit();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}finally {
+			manager.close();
+		}
+		
+		return true;
+	}
+
+	@Override
+	public Boolean resetPasswordByEmail(String email, String security, String status) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("resetPasswordByOtpAndEmail");
+			query.setParameter("passs", security);
+			query.setParameter("sts", status);
+			query.setParameter("mass", email);
+			query.executeUpdate();
+			transaction.commit();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}finally {
+			manager.close();
+		}
+		return true;
+	}
 
 }

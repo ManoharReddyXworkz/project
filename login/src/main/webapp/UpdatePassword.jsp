@@ -14,17 +14,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width-divice-width,initial-scale-1">
-<title>Sign In</title>
+<title>Update Password</title>
 <script type="text/javascript">
 	
 </script>
 <style type="text/css">
 body {
-	background-image: url("https://wallpaperaccess.com/full/2000420.jpg");
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 100%;
-	background-size: 100%;
+	background-color: #344a72;
+	font-family: 'Roboto', sans-serif;
 }
 
 .main {
@@ -86,22 +83,21 @@ p {
 }
 </style>
 </head>
+
 <body>
 	<div class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-brand" class="nav-link">
 				<img
 					src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png"
-					width="100" height="30">
+					width="100" height="50">
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item-active"><a href="index.jsp"
 						class="nav-link" style="color: white;">Home</a></li>
-					<li class="nav-item-active"><a href="SignUp.jsp"
-						class="nav-link" style="color: white;">Sign Up</a></li>
-					<li class="nav-item-active"><a href="UpdatePassword.jsp"
-						class="nav-link" style="color: white;">UpdatePassword</a></li>
+					<li class="nav-item-active"><a href="Signin.jsp"
+						class="nav-link" style="color: white;">Sign in</a></li>
 				</ul>
 			</div>
 		</div>
@@ -109,34 +105,28 @@ p {
 	<h2></h2>
 	<br></br>
 	<h2></h2>
-	${message}
 	<div class="main">
-		<h4>SING IN</h4>
-		<form action="status" method="post">
+		<h4>Reset Password</h4>
+		<form action="password" method="post">
 
-			<label>Email</label> <input type="email" name="userEmail"
-				placeholder="Enteryouremail"> <label>Password</label> <input
-				type="text" name="security" placeholder="Enteryourpassword">
-			<input type="submit" value="Singin">
+			<label>Email</label> <input type="email" name="email"
+				placeholder="Email" required> <br> <label>Security</label>
+			<input type="text" name="security" placeholder="Password" required>
+
+			<input type="submit" name="SingIn" value="Submit">
 
 			<p>
 				Not have an account? <a href="SignUp.jsp">Sign up Here</a>
-			</p>
 			<p>
-				<a href="forgot.jsp">Forgot Password?</a>
-			</p>
-
 		</form>
 	</div>
-
-	<div class="foot">
+	<div>
 		<footer class="page-footer font-small blue">
-			<div class="footer-copyright text-center py-1">
-				&copy;Manohar2022Copyright<a href="index.jsp">Home</a>
-
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3">
+				© 2022 Manohar: <a href="index.jsp">Home</a>
 			</div>
-
+			<!-- Copyright -->
 		</footer>
 	</div>
 </body>
-</html>

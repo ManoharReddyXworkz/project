@@ -21,6 +21,7 @@ public class SpringConfiguration {
 		System.out.println("Calling ViewResolver method");
 		return new InternalResourceViewResolver("/",".jsp");
 	}
+	
 	@Bean
 	public MultipartResolver multipartResolver() {
 		System.out.println("Running MultipartResolver method");

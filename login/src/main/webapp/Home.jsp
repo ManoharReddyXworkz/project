@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login index Page</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Including the bootstrap CDN -->
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <script
@@ -18,12 +18,13 @@
 
 <style type="text/css">
 body{
-background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3oTA5iFZZVMpRLPe3lcHNxSvoHABSUhHX9vPWkGlpSSyoRqdVGSCjg5-3YuXjs8Hwp-Q&usqp=CAU");
-background-repeat:no-repeat;
+background-image: url("https://img.freepik.com/free-vector/connections-green-background_53876-90941.jpg?w=2000");
+background-repeat:norepeat; 
 width: 100%;
 height: 100%;
 background-size: 100%;
 }
+
 .foot {
 	position: fixed;
 	left: 0;
@@ -39,7 +40,9 @@ background-size: 100%;
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container">
 			<div class="navabar-brand">
-				<img src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png" width="100" height="50">
+				<img
+					src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png";
+					width="100" height="50">
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
@@ -57,27 +60,15 @@ background-size: 100%;
 
 	</nav>
 	<br></br>
-	<h6 style="text-align: center; color: Yellow" >${message}</h6>
+	<h6 style="text-align: center; font-style: oblique;">${message}</h6>
 	<br>
 
-	<div class="main">
-		<h2 style="text-align: center;">Description of Project</h2>
-
-		<h6 style="text-align: center;">Display Page</h6>
-		<h6 style="text-align: center;">SingUp</h6>
-		<h6 style="text-align: center;">Sing in</h6>
-		<h6 style="text-align: center;">Password</h6>
-		<h6 style="text-align: center;">Forgot Password</h6>
-		<h6 style="text-align: center;">Reset Password</h6>
-	</div>
-	<div>
-		<footer class="page-footer font-small blue">
+<footer class="page-footer font-small blue">
 			<!-- Copyright -->
 			<div class="footer-copyright text-center py-3">
-				Â© 2022 Manohar: <a href="index.jsp">Home</a>
+				© 2022 Manohar: <a href="index.jsp">Home</a>
 			</div>
 			<!-- Copyright -->
 		</footer>
 	</div>
 </body>
-</html>

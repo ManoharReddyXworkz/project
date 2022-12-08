@@ -12,6 +12,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+<style type="text/css">
+body{
+background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxjYlGtpi6g0r-Z60aq3G-MmPmwndTgs9Qhg&usqp=CAU");
+background-repeat:no-repeat;
+width: 100%;
+height: 100%;
+background-size: 100%;
+</style>
+
 <script type = "text/javascript">
 function change_button(checkbx,button_id) {
     var btn = document.getElementById(button_id);
@@ -27,11 +36,11 @@ function change_button(checkbx,button_id) {
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 <div class="container">
 <div class= "navabar-brand" class="nav-link" style="text-transform:uppercase;">
-<img src="images/ntr.jpg" width="200" height="100">
+<img src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png" width="200" height="100">
 </div>
 <div>
 <ul class="nav navbar-nav navbar-right">
-<li class = "nav-item-active"><a href="SignIn.jsp" class="nav-link">Sign-In</a></li>
+<li class = "nav-item-active"><a href="Signin.jsp" class="nav-link">Sign-In</a></li>
 <li class = "nav-item-active"><a href="index.jsp" class="nav-link">Home</a></li>
 </ul>
 </div>
