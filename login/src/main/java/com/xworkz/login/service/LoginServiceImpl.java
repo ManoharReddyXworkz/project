@@ -25,7 +25,7 @@ import com.xworkz.login.dao.LoginDAO;
 import com.xworkz.login.dto.LoginDTO;
 
 @Service
-public class ServiceImpl implements LoginService {
+public class LoginServiceImpl implements LoginService {
 
 	Integer count = 0;
 	@Autowired
@@ -33,7 +33,6 @@ public class ServiceImpl implements LoginService {
 
 	@Override
 	public Boolean validateAndSave(LoginDTO loginDTO) {
-
 		ValidatorFactory validator = Validation.buildDefaultValidatorFactory();
 		Validator validate = validator.getValidator();
 		Set<ConstraintViolation<LoginDTO>> set = validate.validate(loginDTO);

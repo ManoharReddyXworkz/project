@@ -29,4 +29,12 @@ public interface LoginDAO {
 	default Boolean resetPasswordByEmail(String email, String security, String status) {
 		return true;
 	}
-}
+	
+	default Boolean UpdateUserDetailsByEmail (String name, String contactInfo, String email, String fileName) {
+		return true;
+	}
+		
+	}
+	
+
+

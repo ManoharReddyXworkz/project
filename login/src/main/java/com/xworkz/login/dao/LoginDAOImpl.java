@@ -55,10 +55,10 @@ public class LoginDAOImpl implements LoginDAO {
 			Query query = manager.createNamedQuery("FindByEmail");
 			query.setParameter("email", newEmail);
 			List<LoginDTO> resultList = query.getResultList();
-			System.out.println("Getting from result list"+resultList);
+			System.out.println("Getting from result list" + resultList);
 			if (resultList.isEmpty()) {
 				System.out.println("Email is not found");
-			} else if(!resultList.isEmpty()){
+			} else if (!resultList.isEmpty()) {
 				return resultList;
 			}
 		} catch (PersistenceException e) {
@@ -222,10 +222,10 @@ public class LoginDAOImpl implements LoginDAO {
 			transaction.commit();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			manager.close();
 		}
-		
+
 		return true;
 	}
 
@@ -244,7 +244,30 @@ public class LoginDAOImpl implements LoginDAO {
 			transaction.commit();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
+			manager.close();
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean UpdateUserDetailsByEmail(String name, String contactInfo, String email, String fileName) {
+		EntityManager manager = null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("UpdateUserDetailsByEmail");
+			query.setParameter("names", name);
+			query.setParameter("info", contactInfo);
+			query.setParameter("mails", email);
+			query.setParameter("file", fileName);
+			query.executeUpdate();
+			transaction.commit();
+
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
 			manager.close();
 		}
 		return true;

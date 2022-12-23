@@ -39,8 +39,10 @@ import lombok.ToString;
 		@NamedQuery(name = "updateStatusByEmail", query = "update LoginDTO login set login.status=:statuss where login.userEmail=:mails"),
 		@NamedQuery(name = "updateCountByEmail", query = "update LoginDTO login set login.count=:counts where login.userEmail=:mails"),
 		@NamedQuery(name = "resetPasswordByOtpAndEmail", query = "update LoginDTO login set login.security=:passs,login.status=:sts where login.userEmail=:mass"),
-		@NamedQuery(name = "updateOtpDateAndTimeByEmail", query = "update LoginDTO login set login.otp=:ot,login.date=:da,login.time=:tm where login.userEmail=:gmail") })
-  
+		@NamedQuery(name = "updateOtpDateAndTimeByEmail", query = "update LoginDTO login set login.otp=:ot,login.date=:da,login.time=:tm where login.userEmail=:gmail"),
+		@NamedQuery(name = "UpdateUserDetailsByEmail", query = "update LoginDTO login set login.userName=name,login. contactInfo=:info,login.fileName=:file where login.userEmail=:mail"),
+		@NamedQuery(name = "findAll", query = "Select login from LoginDTO login") })
+
 public class LoginDTO implements Serializable {
 
 	@Id
@@ -71,5 +73,5 @@ public class LoginDTO implements Serializable {
 	private Integer otp;
 	private LocalDate date;
 	private LocalTime time;
-
+	private String fileName;
 }

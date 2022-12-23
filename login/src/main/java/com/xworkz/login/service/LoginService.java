@@ -1,7 +1,5 @@
 package com.xworkz.login.service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import com.xworkz.login.dto.LoginDTO;
@@ -12,7 +10,7 @@ public interface LoginService {
 		return true;
 	}
 
-	default List<LoginDTO>  findByEmail(String newEmail) {
+	default List<LoginDTO> findByEmail(String newEmail) {
 		return null;
 	}
 
@@ -46,10 +44,14 @@ public interface LoginService {
 	}
 
 	default Boolean updateOtpDateAndTimeByEmail(String email, LoginDTO loginDTO) {
-			return true;
-	 }
-	
+		return true;
+	}
+
 	default Boolean sendOTPMail(String otpMail, Integer otp, LoginDTO loginDTO) {
 		return true;
-}
+	}
+
+	default Boolean UpdateUserDetailsByEmail(String name, String contactInfo, String email, String fileName) {
+		return true;
+	}
 }

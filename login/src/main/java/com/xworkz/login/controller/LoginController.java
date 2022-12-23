@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xworkz.login.dto.LoginDTO;
-import com.xworkz.login.service.ServiceImpl;
+import com.xworkz.login.service.LoginServiceImpl;
 
 @Controller
 @RequestMapping("login")
@@ -19,21 +19,21 @@ public class LoginController {
 
 	
 	@Autowired
-	@Qualifier("serviceImpl")
-	private ServiceImpl  seviceImpl;
+	@Qualifier("loginServiceImpl")
+	private LoginServiceImpl  loginseviceImpl;
  
     @PostMapping
 	public String onSave(LoginDTO loginDTO,Model model) {
 		System.out.println("Calling onSave Method");
 		System.out.println(loginDTO);
 		if(loginDTO != null) {
-			List<LoginDTO>findByEmail = seviceImpl.findByEmail(loginDTO.getUserEmail());
+			List<LoginDTO>findByEmail = loginseviceImpl.findByEmail(loginDTO.getUserEmail());
 			System.out.println(findByEmail);
 			if(findByEmail != null) {
 				model.addAttribute("msg", "Email is allready is exist");
 			}
 			else {
-				Boolean validateAndSave = seviceImpl.validateAndSave(loginDTO);
+				Boolean validateAndSave = loginseviceImpl.validateAndSave(loginDTO);
 				System.out.println("validateAndSave");
 				if(validateAndSave) {
 					model.addAttribute("DTO",loginDTO);

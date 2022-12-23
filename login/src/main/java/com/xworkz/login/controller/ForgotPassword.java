@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xworkz.login.dto.LoginDTO;
-import com.xworkz.login.service.ServiceImpl;
+import com.xworkz.login.service.LoginServiceImpl;
 import com.xworkz.login.service.UpdateOTPLoginServiceImpl;
 
 @Controller
@@ -19,7 +19,7 @@ import com.xworkz.login.service.UpdateOTPLoginServiceImpl;
 public class ForgotPassword {
 	
 @Autowired
-private ServiceImpl  seviceImpl;
+private LoginServiceImpl  loginseviceImpl;
 
 @Autowired
 @Qualifier("updateOTPLoginServiceImpl")
@@ -36,7 +36,7 @@ public String Password(Model model,LoginDTO loginDTO) {
 
 @GetMapping
 public String forgotPassword(Model model, LoginDTO loginDTO) {
-	List<LoginDTO> findByEmail = seviceImpl.findByEmail(loginDTO.getUserEmail());
+	List<LoginDTO> findByEmail =  loginseviceImpl.findByEmail(loginDTO.getUserEmail());
 	System.out.println(findByEmail);
 	if(findByEmail != null) {
 		Boolean updateOtpDateAndTimeByEmail = updateOTPLoginServiceImpl.updateOtpDateAndTimeByEmail(loginDTO.getUserEmail(), loginDTO);

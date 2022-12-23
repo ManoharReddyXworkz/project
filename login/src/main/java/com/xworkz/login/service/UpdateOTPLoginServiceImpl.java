@@ -29,11 +29,11 @@ public class UpdateOTPLoginServiceImpl implements LoginService {
 	private LoginDAO loginDAO;
 
 	@Autowired
-	private ServiceImpl serviceImpl;
+	private LoginServiceImpl loginServiceImpl;
 
 	private LocalDateTime mailSendTimeAndDate;
 
-	public UpdateOTPLoginServiceImpl() {
+	public UpdateOTPLoginServiceImpl() {	
 		System.out.println("Created" + this.getClass().getSimpleName());
 	}
 
@@ -44,7 +44,7 @@ public class UpdateOTPLoginServiceImpl implements LoginService {
 		System.out.println(findByEmail);
 		if (findByEmail != null) {
 			System.out.println("Email is matched");
-			Integer otpGeneration = serviceImpl.otpGeneration();
+			Integer otpGeneration = loginServiceImpl.otpGeneration();
 			mailSendTimeAndDate = LocalDateTime.now();
 			LocalDate dates = mailSendTimeAndDate.toLocalDate();
 			LocalTime times = mailSendTimeAndDate.toLocalTime();
@@ -58,7 +58,7 @@ public class UpdateOTPLoginServiceImpl implements LoginService {
 			Boolean updateOtpByEmail = loginDAO.updateOtpDateAndTimeByEmail(loginDTO.getOtp(), loginDTO.getUserEmail(),
 					loginDTO.getDate(), loginDTO.getTime());
 			if (updateOtpByEmail) {
-				boolean sendMail = serviceImpl.sendOTPMail(email, otpGeneration, loginDTO);
+				boolean sendMail = loginServiceImpl.sendOTPMail(email, otpGeneration, loginDTO);
 				if (sendMail) {
 					System.out.println("OTP is sent Succesfully");
 				} else {
